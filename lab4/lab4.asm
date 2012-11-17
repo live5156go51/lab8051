@@ -1,0 +1,47 @@
+		ORG 0000H
+		AJMP MAIN
+		ORG 0003H
+		AJMP INTT0
+		ORG 0030H
+MAIN:	
+		SETB EA
+		SETB EX0
+		SETB IT0
+		;MOV P1,#80H
+		; MOV P2,#00H
+		MOV P0,#00H
+		MOV R0,#00H
+DISPALY:
+		MOV DPTR,#TAB
+		MOV A,R0
+		MOVC A,@A+DPTR
+		MOV P0,A
+		SJMP $
+INTT0:
+		ACALL DELAY;Ïû¶¶200ms
+		JB P3.2,IEXIT
+		;MOV P1,#80H
+ADDIT:	INC R0
+		MOV DPTR,#TAB
+		MOV A,R0
+		MOVC A,@A+DPTR
+		MOV P0,A
+		ACALL DELAY
+		JNB P3.2,ADDIT
+IEXIT:	RETI
+DELAY: 
+		MOV B,#100	;delay 20ms
+DL0:	
+		MOV R1,#0FAH ; 250*4 
+DL1:
+		NOP
+		NOP
+		DJNZ R1,DL1
+		DJNZ B,DL0
+		RET
+TAB:
+        DB       3FH,  06H,  5BH,  4FH  ;0, 1, 2, 3
+        DB       66H,  6DH,  7DH,  07H  ;4, 5, 6, 7
+        DB       7FH,  6FH,  77H,  7CH  ;8, 9, A, B
+        DB       39H,  5EH,  79H,  7EH  ;C, D, E, F
+		END

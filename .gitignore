@@ -1,0 +1,26 @@
+#  Object Files
+*.OBJ
+
+# List Files
+*.LST
+
+# Map files
+*.MAP
+
+# Executable files
+*.EXE
+*.bak
+*.PWI
+*.M51
+*.lnp
+*.plg
+*.DBK
+#*.uvproj
+*.uvopt
+*.hex
+*._ia
+*.junstrix
+*.iex
+*.ini
+*.A51
+*.dat
